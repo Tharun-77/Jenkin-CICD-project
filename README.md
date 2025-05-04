@@ -123,3 +123,50 @@ Use “Add or Remove Programs” to uninstall Jenkins.
 - Jenkins Docs: https://www.jenkins.io/doc
 - Jenkins GitHub: https://github.com/jenkinsci/jenkins
 - Jenkins Plugins: https://plugins.jenkins.io/
+
+---
+
+# Connect to GitHub Using SSH
+
+Follow these steps to set up SSH authentication between your local machine and GitHub.
+
+---
+
+## Step 1: Generate SSH Key
+
+```bash
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+```
+
+Press Enter to accept the default file location (`~/.ssh/id_rsa`), and optionally set a passphrase.
+
+---
+
+
+## Step 2: Add SSH Key to GitHub
+
+Copy your public key:
+
+```bash
+cat ~/.ssh/id_rsa.pub
+```
+
+1. Go to GitHub → Settings → SSH and GPG Keys → New SSH Key
+2. Paste the key
+3. Save
+
+---
+
+## Step 3: Test the Connection
+
+```bash
+ssh -T git@github.com
+```
+
+You should see:
+
+```
+Hi username! You've successfully authenticated, but GitHub does not provide shell access.
+```
+
+---
