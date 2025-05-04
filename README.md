@@ -175,4 +175,19 @@ Hi username! You've successfully authenticated, but GitHub does not provide shel
 
 jenkins -> freestyle project -> github link -> source code management (select git) -> give repo url -> add credentials -> kind (ssh username with private key) and (username same as ubuntu's username) and ID random name -> ADD ->select branch (same as git's) -> SAVE
 
+then BUILD NOW in jenkins
+
+---
+
+# For to run docker command in linux using jenkins
+
+Inside jenkins job go to configure then in build steps add a build step and select exhicute shell the paste these command
+
+```bash
+docker build . -t todo-node-app
+docker run -d --name todo-node-app-1 -p 8000:8000 todo-node-app
+```
+
+then SAVE changes after that build now
+
 ---
