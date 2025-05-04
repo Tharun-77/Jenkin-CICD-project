@@ -190,6 +190,8 @@ docker run -d --name todo-node-app-1 -p 8000:8000 todo-node-app
 
 then SAVE changes after that build now
 
+and also shell commands are given in shell.sh
+
 ---
 
 # GitHub Webhook Integration with Jenkins
