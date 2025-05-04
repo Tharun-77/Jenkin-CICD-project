@@ -120,6 +120,6 @@ Use “Add or Remove Programs” to uninstall Jenkins.
 
 ## Resources
 
-- Jenkins Docs: https://www.jenkins.io/doc/
+- Jenkins Docs: https://www.jenkins.io/doc
 - Jenkins GitHub: https://github.com/jenkinsci/jenkins
 - Jenkins Plugins: https://plugins.jenkins.io/
