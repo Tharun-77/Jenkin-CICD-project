@@ -191,3 +191,82 @@ docker run -d --name todo-node-app-1 -p 8000:8000 todo-node-app
 then SAVE changes after that build now
 
 ---
+
+# GitHub Webhook Integration with Jenkins
+
+This guide explains how to connect a GitHub repository to Jenkins using a webhook to trigger builds automatically when code is pushed.
+
+---
+
+## Prerequisites
+
+- Jenkins is installed and running (publicly accessible or via ngrok for testing)
+- Jenkins Git and GitHub plugins installed
+- A GitHub repository
+- GitHub and Jenkins integrated using SSH or HTTPS (already working build)
+
+---
+
+## Step 1: Enable GitHub Integration in Jenkins Project
+
+1. Go to Jenkins → Open your project → **Configure**
+2. Scroll to **Build Triggers**
+3. Check **"GitHub hook trigger for GITScm polling"**
+4. Click **Save**
+
+---
+
+## Step 2: Ensure Jenkins Can Receive Webhooks
+
+Your Jenkins URL **must be accessible by GitHub**:
+
+- If public: Use your server IP/domain
+- If local: Use `ngrok` to expose Jenkins
+
+Example:
+```bash
+ngrok http 8080
+```
+Use the generated `https://xyz.ngrok.io` URL for webhook.
+
+---
+
+## Step 3: Configure Webhook in GitHub
+
+1. Go to your GitHub repository → **Settings** → **Webhooks**
+2. Click **"Add webhook"**
+3. Set:
+   - **Payload URL**: `http://<your-jenkins-url>/github-webhook/`  
+     _(use https and ngrok if testing locally)_
+   - **Content type**: `application/json`
+   - **Secret**: (optional)
+   - **Event trigger**: Choose “Just the push event”
+4. Click **Add webhook**
+
+---
+
+## Step 4: Validate Webhook
+
+1. Push code to your GitHub repository
+2. Jenkins should automatically start a build
+3. Go to Jenkins → Project → **Build History** to see if it was triggered
+4. On GitHub → **Webhook** → View **Recent Deliveries** → You should see status as "200"
+
+---
+
+## Troubleshooting
+
+- Jenkins must run on port 80 or 8080 (or be properly exposed)
+- Check firewall/NAT if hosted on a private server
+- Verify Jenkins URL is correct in the webhook
+- Use the **GitHub plugin** in Jenkins, not just the Git plugin
+
+---
+
+## References
+
+- Jenkins GitHub Plugin: https://plugins.jenkins.io/github/
+- GitHub Webhooks: https://docs.github.com/en/webhooks
+- Ngrok: https://ngrok.com/
+
+
