@@ -170,3 +170,9 @@ Hi username! You've successfully authenticated, but GitHub does not provide shel
 ```
 
 ---
+
+# To connect git,ubuntu server to jenkins
+
+jenkins -> freestyle project -> github link -> source code management (select git) -> give repo url -> add credentials -> kind (ssh username with private key) and (username same as ubuntu's username) and ID random name -> ADD ->select branch (same as git's) -> SAVE
+
+---
